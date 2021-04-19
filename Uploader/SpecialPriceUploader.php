@@ -107,12 +107,16 @@ class SpecialPriceUploader implements UploaderInterface
     {
         $allActivityEntities = $this->entityRepository->getAllDataManipulatedByActivityIdGroupedByIdentifier($activityId);
 
+        $i = 0;
+        $tot = count($allActivityEntities);
         foreach ($allActivityEntities as $entityIdentifier => $entities) {
             $this->logger->info(__(
                 'activityId:%1 ~ Uploader ~ uploaderType:%2 ~ entityIdentifier:%3 ~ START',
                 $activityId,
                 $uploaderType,
-                $entityIdentifier
+                $entityIdentifier,
+                ++$i,
+                $tot
             ));
 
             try {
